@@ -1,9 +1,8 @@
 # ~/.bashrc
 
 # common aliases
-alias ls='eza --color=auto'
-alias ll='eza -lavh --ignore=..' # show long listing of all except ".."
-alias l='eza -lav --ignore=.?*'  # show long listing but no hidden dotfiles except "."
+alias ls='eza'
+alias ll='eza -lah' # show long listing of all except ".."
 alias la='eza -A'
 alias ~="cd ~/"
 alias bashrc='nvim ~/.bashrc'
@@ -124,4 +123,15 @@ export NNN_PLUG='c:fzcd;s:rsynccp;r:renamer;m:nmount;p:preview-tui;t:preview-tab
 export NNN_COLORS="#b1b1b1b1;5555"
 export NNN_TERMINAL='konsole'
 
-[[ -r .aliases.bash ]] && source .aliases.bash
+[[ -f $HOME/.aliases ]] && source $HOME/.aliases
+
+# pnpm
+export PNPM_HOME="/home/sulthan/.local/share/pnpm"
+case ":$PATH:" in
+*":$PNPM_HOME:"*) ;;
+*) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# Set up Node Version Manager
+source /usr/share/nvm/init-nvm.sh
